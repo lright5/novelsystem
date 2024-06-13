@@ -38,7 +38,7 @@
           <%--</div>--%>
           <div class="layui-form-item">
             <label  class="layui-form-label">
-                <span class="x-red"></span>书名
+                <span class="x-red"></span>商品
             </label>
             <div class="layui-input-inline">
                 <input readonly="readonly" type="text" id="bookName" name="bookName" required="" lay-verify="required"
@@ -58,7 +58,7 @@
 
           <div class="layui-form-item">
               <label for="orderPrice" class="layui-form-label">
-                  <span class="x-red"></span>小说价格
+                  <span class="x-red"></span>价格
               </label>
               <div class="layui-input-inline">
                   <c:if test="${reader.member_until>=Date()}">
