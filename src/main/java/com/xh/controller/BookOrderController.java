@@ -1,12 +1,14 @@
 package com.xh.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.xh.dao.ReaderMapper;
 import com.xh.dto.ResultData;
 import com.xh.pojo.Book;
 import com.xh.pojo.BookOrder;
 import com.xh.pojo.Reader;
 import com.xh.service.BookOrderService;
 import com.xh.service.BookService;
+import com.xh.service.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +27,8 @@ public class BookOrderController {
     private BookOrderService bookOrderService;
     @Autowired
     private BookService bookService;
-
+    @Autowired
+    private ReaderService readerService;
 
     @RequestMapping("/bookorder/bookorderlist")
     public String bookorderlist(Model model,
@@ -74,7 +77,9 @@ public class BookOrderController {
         bookOrder.setOrderStatus(1);
         bookOrder.setPayStatus(1);
         ResultData resultData = bookOrderService.add(bookOrder);
-
+        if (bookOrder.getBookId()==0){
+            readerService.updateMemberUntil(readerId);
+        }
         return resultData;
     }
 

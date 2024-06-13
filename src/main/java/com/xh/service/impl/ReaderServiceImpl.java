@@ -189,4 +189,9 @@ public class ReaderServiceImpl implements ReaderService {
         List<Reader> list = readerMapper.findDeleteList();
         return new PageInfo<>(list);
     }
+
+    @Override
+    public int updateMemberUntil(Integer readerId){
+        return readerMapper.updateMemberUntil(readerId);
+    }
 }

@@ -79,5 +79,7 @@ public interface ReaderService {
      * @return
      */
     PageInfo<Reader> DeleteList(Integer page, Integer pageSize);
+
+    int updateMemberUntil(Integer readerId);
 }
 

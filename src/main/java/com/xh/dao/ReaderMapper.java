@@ -65,4 +65,7 @@ Reader findByrName(String readerName);
 
     // 显示删除的数据
     List<Reader> findDeleteList();
+
+    int updateMemberUntil(@Param("readerId") Integer readerId);
+
 }

@@ -79,4 +79,13 @@
             #{readerId}
         </foreach>
     </update>
+
+    <update id="updateMemberUntil" parameterType="java.lang.Integer">
+        UPDATE reader
+        SET member_until = CASE
+                               WHEN NOW() > member_until THEN DATE_ADD(NOW(), INTERVAL 1 MONTH)
+                               ELSE DATE_ADD(member_until, INTERVAL 1 MONTH)
+            END
+        WHERE readerId = #{readerId}
+    </update>
 </mapper>
