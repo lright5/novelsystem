@@ -1,3 +1,4 @@
+<%@ page import="java.util.Date" %>
 <%@page contentType="text/html;charset=utf-8" language="java" isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!DOCTYPE html>
@@ -79,7 +80,7 @@
             <th>订单编号</th>
             <th>用户id</th>
             <th>订单金额</th>
-            <th>折扣活动</th>
+            <th>折扣</th>
             <th>订单状态</th>
             <th>支付方式</th>
             <th>下单时间</th>
@@ -95,10 +96,18 @@
             <td>${bookorder.orderid}</td>
             <td>${bookorder.userId}</td>
             <td>${bookorder.orderPrice}</td>
-            <td>${bookorder.discountId ==1? "9折":"限时全免"}</td>
+            <c:if test="${reader.member_until>=Date()}">
+              <td>会员八折</td>
+            </c:if>
+            <c:if test="${reader.member_until<Date()}">
+              <td>原价</td>
+            </c:if>
+<%--            <td>${bookorder.discountId ==1? "9折":"限时全免"}</td>--%>
+
             <td class="td-status1">
                   <span class="layui-btn layui-btn-normal layui-btn-mini">${bookorder.orderStatus==1 ? "待确定":"已完成"}</span>
                </td>
+
             <td>${bookorder.payWay}</td>
             <td>${bookorder.orderDate}</td>
 
@@ -161,6 +170,7 @@
               if($(obj).attr('title')=='待确定'){
 
                 //发异步把用户状态进行更改
+                if ()
                  $.ajax({
                      type:"post",
                      url:"${pageContext.request.contextPath}/bookorder/editStatus",

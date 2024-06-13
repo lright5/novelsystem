@@ -20,10 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author:Teacher黄
- * @date:Created at 2019/07/04
- */
+
 @Controller
 public class LoginController {
 

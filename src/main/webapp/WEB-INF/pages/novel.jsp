@@ -133,6 +133,7 @@
                 <p>${book.bookDetail.bookBref}
                 </p>
                 <button><a href="${pageContext.request.contextPath}/shiduPage?bookId=${book.bookId}&page=1">免费试读</a></button>
+
                 <button onclick="x_admin_show('立即购买','${pageContext.request.contextPath}/bookOrder/toOrder?bookId=${book.bookId}',600,400)">立即购买</button>
             </div>
         </div>

@@ -3,17 +3,16 @@ package com.xh.controller;
 import com.github.pagehelper.PageInfo;
 import com.xh.dto.ResultData;
 import com.xh.pojo.Reader;
-import com.xh.pojo.*;
 import com.xh.service.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -42,16 +41,18 @@ public class ReaderController {
     @ResponseBody
 
         public ResultData login1(Reader reader,HttpServletRequest request){
+
         request.getSession().setAttribute("currentLoginAuthorId", null);
             // 登陆操作
             ResultData resultData = readerService.login1(reader);
             // 判断登陆成功,将用户数据保存到 session中
             // 如何获取session对象?
-            if(resultData.getCode() == 200){
+           if(resultData.getCode() == 200){
                 HttpSession session = request.getSession();
+//                System.out.println("\n\n\n\nSession中的Reader：" + session.getAttribute("reader")+"\n\n\n\n");
                 session.setAttribute("reader",resultData.getData());
-            }
 
+           }
             return resultData;
         }
 
@@ -222,6 +223,44 @@ public class ReaderController {
         return "front/center";
     }
 
+    @RequestMapping(value = "/reader/get reader")
+    public String getReader(HttpSession session, Model model){
+
+        Reader reader = (Reader)session.getAttribute("reader");
+//        if(reader==null){
+//            return  "login";
+//        }
+        //Reader reader = readerService.findById(Integer.valueOf(session.getId()));
+        model.addAttribute("reader",reader);
+        return "front/order";
+    }
 
 
+    @RequestMapping(value = "/reader/get reader1")
+    public String getReader1(HttpSession session, Model model){
+
+        Reader reader = (Reader)session.getAttribute("reader");
+        //System.out.println("\n\n\n\nSession中的Reader：" + session.getAttribute("reader")+"\n\n\n\n");
+
+//        if(reader==null){
+//            return  "login";
+//        }
+        //Reader reader = readerService.findById(Integer.valueOf(session.getId()));
+        model.addAttribute("reader",reader);
+        return "front/personal";
+    }
+
+    @RequestMapping(value = "/reader/get reader2")
+    public String getReader2(HttpSession session, Model model){
+
+        Reader reader = (Reader)session.getAttribute("reader");
+        //System.out.println("\n\n\n\nSession中的Reader：" + session.getAttribute("reader")+"\n\n\n\n");
+
+//        if(reader==null){
+//            return  "login";
+//        }
+        //Reader reader = readerService.findById(Integer.valueOf(session.getId()));
+        model.addAttribute("reader",reader);
+        return "bookorder/bookorder-list";
+    }
 }

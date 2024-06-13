@@ -25,7 +25,7 @@ public class AuthorController {
     }
 
 
-    @RequestMapping("/zuoping")
+    @RequestMapping("/zuopin")
     public String zuoping() {
         return "index11";
     }

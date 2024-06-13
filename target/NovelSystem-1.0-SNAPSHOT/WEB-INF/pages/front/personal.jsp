@@ -1,7 +1,9 @@
 <!-- <%--<%@page contentType="text/html; charset=utf-8" language="java" %>--%>
 <%--&lt;%&ndash;jsp 动作标签 => 转发&ndash;%&gt;--%>
 <%--<jsp:forward page="/index"/>--%>
-<%@page contentType="text/html; charset=utf-8" language="java" isELIgnored="false" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="com.xh.pojo.Reader" %>
+<%@page contentType="text/html; charset=utf-8" isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%> -->
 <html>
@@ -305,9 +307,19 @@
                         <c:if test="${empty reader}">
                             <a href="${pageContext.request.contextPath}/logout">登录</a>
                         </c:if>
-                        <c:if test="${empty reader}">
-                            <a href="${pageContext.request.contextPath}/reader/toCenter">${reader.readerName}</a>
+
+                        <c:if test="${!empty reader}">
+<%--                            <a href="${pageContext.request.contextPath}/reader/toCenter">${reader.readerName}</a>--%>
+                            <c:if test="${reader.member_until>=Date()}">
+                                <span>${reader.readerName} (VIP)</span>
+                            </c:if>
+
+                            <c:if test="${reader.member_until<Date()}">
+                                <span>${reader.readerName}</span>
+                            </c:if>
+
                         </c:if>
+                    </li>
                     </li>
                     <li style="text-align:right;line-height: 40px">
                         <a href="${pageContext.request.contextPath}/logout">退出</a>
@@ -315,6 +327,17 @@
                     <li style="text-align:right;line-height: 40px">
                         <a href="${pageContext.request.contextPath}/bookOrder/toOrderCenter">订单中心</a>
                     </li>
+                    <c:if test="${!empty reader}">
+                        <li style="text-align:right;line-height: 40px">
+                            <span onclick="x_admin_show('立即购买','${pageContext.request.contextPath}/bookOrder/toOrder?bookId=0',600,400)">购买VIP</span>
+                        </li>
+                    </c:if>
+
+                    <c:if test="${!empty reader&&reader.member_until>=Date()}">
+                        <li style="text-align:right;line-height: 40px">
+                            <span>VIP到期时间:${reader.member_until.month+1}.${reader.member_until.date}</span>
+                        </li>
+                    </c:if>
 
                 </ul>
 

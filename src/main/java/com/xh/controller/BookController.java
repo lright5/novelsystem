@@ -2,7 +2,6 @@ package com.xh.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.xh.dto.ResultData;
-import com.xh.pojo.Author;
 import com.xh.pojo.Book;
 import com.xh.service.AuthorService;
 import com.xh.service.BookService;

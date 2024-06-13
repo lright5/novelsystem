@@ -1,4 +1,5 @@
-<%@page contentType="text/html; charset=utf-8" language="java"  isELIgnored="false" %>
+<%@ page import="java.util.Date" %>
+<%@page contentType="text/html; charset=utf-8" isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -40,7 +41,7 @@
                 <span class="x-red"></span>书名
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="bookName" name="bookName" required="" lay-verify="required"
+                <input readonly="readonly" type="text" id="bookName" name="bookName" required="" lay-verify="required"
                 autocomplete="off" class="layui-input" value="${book.bookName}" placeholder="${book.bookName}">
             </div>
         </div>
@@ -60,8 +61,16 @@
                   <span class="x-red"></span>小说价格
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="orderPrice" name="orderPrice" required="" lay-verify="required"
-                  autocomplete="off" class="layui-input" value="${book.bookPrice}">
+                  <c:if test="${reader.member_until>=Date()}">
+                      <input readonly="readonly" type="text" id="orderPrice" name="orderPrice" required="" lay-verify="required"
+                              autocomplete="off" class="layui-input" value="${book.bookPrice*0.8}">
+                      <span>(Vip用户八折优惠)</span>
+                  </c:if>
+                  <c:if test="${reader.member_until<Date()||reader==null}">
+                      <input readonly="readonly" type="text" id="orderPrice" name="orderPrice" required="" lay-verify="required"
+                              autocomplete="off" class="layui-input" value="${book.bookPrice}">
+                  </c:if>
+
               </div>
           </div>
             <div class="layui-form-item">

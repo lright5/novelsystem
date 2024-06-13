@@ -13,8 +13,14 @@ public class Reader {
     private Integer readerStatus;
     private Double balance;
     private String password;
+    private Timestamp member_until;
 
-    public Reader() {
+    public Timestamp getMember_until() {
+        return member_until;
+    }
+
+    public void setMember_until(Timestamp member_until) {
+        this.member_until = member_until;
     }
 
     public Integer getReaderId() {
