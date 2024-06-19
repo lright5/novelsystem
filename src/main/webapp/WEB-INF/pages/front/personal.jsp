@@ -435,7 +435,8 @@
         <div class="context">
             <ul class="neirong">
 
-                <c:forEach items="${randList}" var="bookRand">
+
+                <c:forEach items="${randList}" var="bookRand" >
                     <li>
                         <div class="tupian"><a
                                 href="${pageContext.request.contextPath}/novelPage?bookId=${bookRand.bookId}"><img

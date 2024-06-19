@@ -145,7 +145,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> findRandList() {
         List<Book> list = bookMapper.findList(new HashMap<>());
-        List<Book> bookList = new ArrayList<Book>();
+        List<Book> bookList = new ArrayList<>();
         for (int i = 0; i < Math.min(6, bookList.size() + 1); i++) {
             int rand = (int) ((Math.random()) * bookList.size());
             bookList.add(list.get(rand));

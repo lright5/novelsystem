@@ -74,7 +74,7 @@ public class AdminServiceImpl implements AdminService {
         }
         // 验证数据
 
-        // 数据的填充
+        // 数据填充
         admin.setAdminType(2);
         admin.setAdminStatus(1);
         admin.setAdminAddTime(new Timestamp(System.currentTimeMillis()));

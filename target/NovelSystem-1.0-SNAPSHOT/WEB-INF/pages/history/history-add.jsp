@@ -1,7 +1,7 @@
 <%@page contentType="text/html; charset=utf-8" language="java"  isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
-  
+
   <head>
     <meta charset="UTF-8">
     <title>章节</title>
@@ -20,7 +20,7 @@
       <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  
+
   <body>
     <div class="x-body layui-anim layui-anim-up">
         <form class="layui-form">
@@ -67,7 +67,7 @@
             $ = layui.jquery;
           var form = layui.form
           ,layer = layui.layer;
-        
+
           //自定义验证规则
           form.verify({
             nikename: function(value){

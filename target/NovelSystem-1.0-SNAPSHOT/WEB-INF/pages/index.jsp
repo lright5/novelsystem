@@ -123,36 +123,36 @@
                 </ul>
             </li>
 
-<%--            <li>--%>
-<%--                <a href="javascript:;">--%>
-<%--                    <i class="iconfont">&#xe723;</i>--%>
-<%--                    <cite>充值订单管理</cite>--%>
-<%--                    <i class="iconfont nav_right">&#xe697;</i>--%>
-<%--                </a>--%>
-<%--                <ul class="sub-menu">--%>
-<%--                    <li>--%>
-<%--                        <a _href="${pageContext.request.contextPath}/rechargeorder/rechargeorderlist">--%>
-<%--                            <i class="iconfont">&#xe6a7;</i>--%>
-<%--                            <cite>充值订单列表</cite>--%>
-<%--                        </a>--%>
-<%--                    </li >--%>
-<%--                </ul>--%>
-<%--            </li>--%>
-<%--            <li>--%>
-<%--                <a href="javascript:;">--%>
-<%--                    <i class="iconfont">&#xe723;</i>--%>
-<%--                    <cite>折扣活动管理</cite>--%>
-<%--                    <i class="iconfont nav_right">&#xe697;</i>--%>
-<%--                </a>--%>
-<%--                <ul class="sub-menu">--%>
-<%--                    <li>--%>
-<%--                        <a _href="${pageContext.request.contextPath}/discount/discountlist">--%>
-<%--                            <i class="iconfont">&#xe6a7;</i>--%>
-<%--                            <cite>折扣活动列表</cite>--%>
-<%--                        </a>--%>
-<%--                    </li >--%>
-<%--                </ul>--%>
-<%--            </li>--%>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe723;</i>
+                    <cite>充值订单管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="${pageContext.request.contextPath}/rechargeorder/rechargeorderlist">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>充值订单列表</cite>
+                        </a>
+                    </li >
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe723;</i>
+                    <cite>折扣活动管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="${pageContext.request.contextPath}/discount/discountlist">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>折扣活动列表</cite>
+                        </a>
+                    </li >
+                </ul>
+            </li>
 
             <li>
                 <a href="javascript:;">

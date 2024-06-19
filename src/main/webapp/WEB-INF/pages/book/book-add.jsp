@@ -40,23 +40,23 @@
                 <div class="layui-input-inline">
                     <input type="text"  name="bookType" required="" lay-verify="nikename" class="layui-input">
                 </div>
-            </div>
-<%--            <div class="layui-form-item">
-                <label  class="layui-form-label">
-                    <span class="x-red">*</span>作者
-                </label>
-                <div class="layui-input-inline">
-                    <input type="text"  name="author" required="" lay-verify="nikename" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label  class="layui-form-label">
-                    <span class="x-red">*</span>作者ID
-                </label>
-                <div class="layui-input-inline">
-                    <input type="text"  name="authorId" required="" lay-verify="nikename" class="layui-input">
-                </div>
-            </div>--%>
+<%--            </div>--%>
+<%--            <div class="layui-form-item">--%>
+<%--                <label  class="layui-form-label">--%>
+<%--                    <span class="x-red">*</span>作者--%>
+<%--                </label>--%>
+<%--                <div class="layui-input-inline">--%>
+<%--                    <input type="text"  name="author" required="" lay-verify="nikename" class="layui-input">--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="layui-form-item">--%>
+<%--                <label  class="layui-form-label">--%>
+<%--                    <span class="x-red">*</span>作者ID--%>
+<%--                </label>--%>
+<%--                <div class="layui-input-inline">--%>
+<%--                    <input type="text"  name="authorId" required="" lay-verify="nikename" class="layui-input">--%>
+<%--                </div>--%>
+<%--            </div>--%>
             <div class="layui-form-item">
                 <label  class="layui-form-label">
                     <span class="x-red">*</span>小说价格
