@@ -1,6 +1,8 @@
 package com.xh.interceptor;
 
 import com.xh.pojo.Admin;
+import com.xh.pojo.Author;
+import com.xh.pojo.Reader;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,20 +23,39 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         // 先去获取session对象
-       /* HttpSession session = httpServletRequest.getSession();
-        // 判断session对象中是否保存了 登陆的用户信息?
-        Admin admin = (Admin) session.getAttribute("admin");
-        if(admin == null){
-            // session中没有 用户登陆的信息
-            // 重定向到 登陆页面
-            // 如何重定向呢?
-            String contextPath = httpServletRequest.getContextPath();
-            httpServletResponse.sendRedirect(contextPath+"/loginPage");
-            return false;
-        }*/
+//       HttpSession session = httpServletRequest.getSession();
+//        // 判断session对象中是否保存了 登陆的用户信息?
+//        Admin admin = (Admin) session.getAttribute("admin");
+//        Reader reader = (Reader) session.getAttribute("reader");
+//        Author author = (Author) session.getAttribute("author");
+//        String requestURI = httpServletRequest.getRequestURI();
+//        if (AllowedWithoutLogin(requestURI)) {
+//            return true;
+//        }
+//        if(admin == null&&reader == null&&author == null){
+//            // session中没有 用户登陆的信息
+//            // 重定向到 登陆页面
+//            // 如何重定向呢?
+//            String contextPath = httpServletRequest.getContextPath();
+//            httpServletResponse.sendRedirect(contextPath+"/book/getByType?bookType=1");
+//            return false;
+//        }
 
         return true;
     }
+
+
+
+//    private boolean AllowedWithoutLogin(String requestURI) {
+//        // 在这里添加允许未登录访问的页面URL
+//        String[] allowedURIs = {"/book/getByType","/shiduPage","/duzhe","/loginPage","/zuozhe","/novelPage"};
+//        for (String allowedURI : allowedURIs) {
+//            if (requestURI.contains(allowedURI)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {

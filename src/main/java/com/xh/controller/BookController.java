@@ -3,8 +3,11 @@ package com.xh.controller;
 import com.github.pagehelper.PageInfo;
 import com.xh.dto.ResultData;
 import com.xh.pojo.Book;
+import com.xh.pojo.Chapter;
+import com.xh.pojo.Message;
 import com.xh.service.AuthorService;
 import com.xh.service.BookService;
+import com.xh.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -23,6 +27,8 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+    @Autowired
+    private MessageService messageService;
 
 //    @Autowired
 //    private BookService bookService;
@@ -156,5 +162,30 @@ public class BookController {
         session.setAttribute("randList",randList);
         return "/front/personal";
     }
+
+    @RequestMapping(value = "/shiduPage",method = RequestMethod.GET)
+    public String shiduPage(Integer bookId,Integer page,Model model){
+        Book book = bookService.findById(bookId);
+        Chapter chapter = book.getChapterList().get(page-1);
+        int totalPage= book.getChapterList().size();
+        List<Chapter> chapterList = new ArrayList<>();
+        chapterList.add(chapter);
+        book.setChapterList(chapterList);
+        model.addAttribute("book",book);
+        model.addAttribute("page",page);
+        model.addAttribute("totalPage",totalPage);
+        return "shidu";
+    }
+
+    @RequestMapping(value = "/novelPage",method = RequestMethod.GET)
+    public String novelPage(Integer bookId, Model model){
+        Book book = bookService.findById(bookId);
+        List<Message> messageList = messageService.findByBookId(bookId);
+
+        model.addAttribute("book",book);
+        model.addAttribute("messageList",messageList);
+        return "novel";
+    }
+
 
 }

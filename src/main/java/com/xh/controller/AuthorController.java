@@ -19,10 +19,7 @@ public class AuthorController {
     private AuthorService authorService;
 
 
-    @RequestMapping("/zuozhe")
-    public String duzhe() {
-        return "loginauthor";
-    }
+
 
 
     @RequestMapping("/zuoping")
@@ -35,24 +32,7 @@ public class AuthorController {
      *
      * @return
      */
-    @RequestMapping("/loginauthor")
-    @ResponseBody
-    public ResultData login2(Author author, HttpServletRequest request) {
-        ResultData resultData = authorService.login2(author);
 
-        try {
-            if (resultData.getData() instanceof Author) {
-                request.getSession().setAttribute("currentLoginAuthorId", ((Author) resultData.getData()).getAuthorId());
-            } else {
-                request.getSession().setAttribute("currentLoginAuthorId", null);
-            }
-            System.out.println("当前登录的作者ID：" + request.getSession().getAttribute("currentLoginAuthorId"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return resultData;
-    }
 
 
     //作者列表

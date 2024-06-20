@@ -2,27 +2,26 @@ package com.xh.controller;
 
 import com.xh.dto.ResultData;
 import com.xh.pojo.Admin;
-import com.xh.pojo.Book;
-import com.xh.pojo.Chapter;
-import com.xh.pojo.Message;
+import com.xh.pojo.Author;
+import com.xh.pojo.Reader;
 import com.xh.service.AdminService;
+import com.xh.service.AuthorService;
 import com.xh.service.BookService;
-import com.xh.service.MessageService;
+import com.xh.service.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
 public class LoginController {
+
+    @Autowired
+    private AuthorService authorService;
 
     @Autowired
     private AdminService adminService;
@@ -30,8 +29,9 @@ public class LoginController {
     @Autowired
     private BookService bookService;
 
+
     @Autowired
-    private MessageService messageService;
+    private ReaderService readerService;
 
     /**
      * 登陆页面
@@ -43,29 +43,8 @@ public class LoginController {
     }
 
 
-    @RequestMapping(value = "/novelPage",method = RequestMethod.GET)
-    public String novelPage(Integer bookId, Model model){
-        Book book = bookService.findById(bookId);
-        List<Message> messageList = messageService.findByBookId(bookId);
 
-        model.addAttribute("book",book);
-        model.addAttribute("messageList",messageList);
-        return "novel";
-    }
 
-    @RequestMapping(value = "/shiduPage",method = RequestMethod.GET)
-    public String shiduPage(Integer bookId,Integer page,Model model){
-        Book book = bookService.findById(bookId);
-        Chapter chapter = book.getChapterList().get(page-1);
-        int totalPage= book.getChapterList().size();
-        List<Chapter> chapterList = new ArrayList<>();
-        chapterList.add(chapter);
-        book.setChapterList(chapterList);
-        model.addAttribute("book",book);
-        model.addAttribute("page",page);
-        model.addAttribute("totalPage",totalPage);
-        return "shidu";
-    }
 
 
     /**
@@ -87,6 +66,50 @@ public class LoginController {
 
         return resultData;
     }
+
+    @RequestMapping("/zuozhe")
+    public String duzhe() {
+        return "loginauthor";
+    }
+
+    @RequestMapping("/loginauthor")
+    @ResponseBody
+    public ResultData login2(Author author, HttpServletRequest request) {
+        ResultData resultData = authorService.login2(author);
+
+        try {
+            if (resultData.getData() instanceof Author) {
+                request.getSession().setAttribute("currentLoginAuthorId", ((Author) resultData.getData()).getAuthorId());
+            } else {
+                request.getSession().setAttribute("currentLoginAuthorId", null);
+            }
+            System.out.println("当前登录的作者ID：" + request.getSession().getAttribute("currentLoginAuthorId"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultData;
+    }
+
+    @RequestMapping("/loginreader")
+    @ResponseBody
+
+    public ResultData login1(Reader reader,HttpServletRequest request){
+
+        request.getSession().setAttribute("currentLoginAuthorId", null);
+        // 登陆操作
+        ResultData resultData = readerService.login1(reader);
+        // 判断登陆成功,将用户数据保存到 session中
+        // 如何获取session对象?
+        if(resultData.getCode() == 200){
+            HttpSession session = request.getSession();
+//                System.out.println("\n\n\n\nSession中的Reader：" + session.getAttribute("reader")+"\n\n\n\n");
+            session.setAttribute("reader",resultData.getData());
+
+        }
+        return resultData;
+    }
+
+
     @RequestMapping("/rloginPage")
     public String rloginPage(){
         return "front/register";

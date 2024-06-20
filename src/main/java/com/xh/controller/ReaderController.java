@@ -37,24 +37,6 @@ public class ReaderController {
      * 登陆操作
      * @return
      */
-    @RequestMapping("/loginreader")
-    @ResponseBody
-
-        public ResultData login1(Reader reader,HttpServletRequest request){
-
-        request.getSession().setAttribute("currentLoginAuthorId", null);
-            // 登陆操作
-            ResultData resultData = readerService.login1(reader);
-            // 判断登陆成功,将用户数据保存到 session中
-            // 如何获取session对象?
-           if(resultData.getCode() == 200){
-                HttpSession session = request.getSession();
-//                System.out.println("\n\n\n\nSession中的Reader：" + session.getAttribute("reader")+"\n\n\n\n");
-                session.setAttribute("reader",resultData.getData());
-
-           }
-            return resultData;
-        }
 
 
    @RequestMapping("/loginOut")
